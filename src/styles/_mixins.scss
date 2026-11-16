@@ -1,0 +1,29 @@
+@use "variables" as *;
+
+@mixin container {
+  width: min(calc(100% - 2.5rem), $container);
+  margin-inline: auto;
+}
+
+@mixin section {
+  padding: 5.5rem 0;
+}
+
+@mixin eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-family: $font-display;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: $accent-deep;
+}
+
+@mixin card {
+  background: $white;
+  border: 1px solid rgba(21, 32, 51, 0.08);
+  border-radius: $radius;
+  box-shadow: $shadow;
+}

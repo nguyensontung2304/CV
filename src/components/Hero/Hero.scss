@@ -1,0 +1,151 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.hero {
+  position: relative;
+  isolation: isolate;
+  min-height: 100vh;
+  padding: calc(#{$nav-h} + 5rem) 0 5rem;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  color: #eef4ff;
+  background:
+    radial-gradient(
+      1200px 500px at 80% -10%,
+      rgba(46, 196, 182, 0.18),
+      transparent 55%
+    ),
+    linear-gradient(165deg, #06101d 0%, #0b1b31 52%, #10243d 100%);
+
+  &__glow {
+    position: absolute;
+    width: 420px;
+    height: 420px;
+    left: -80px;
+    bottom: -80px;
+    border-radius: 50%;
+    background: radial-gradient(
+      circle,
+      rgba(212, 163, 115, 0.18),
+      transparent 68%
+    );
+    animation: pulse 8s ease-in-out infinite;
+  }
+
+  &__grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+    background-size: 72px 72px;
+    mask-image: radial-gradient(circle at 50% 40%, black, transparent 75%);
+    pointer-events: none;
+  }
+
+  &__inner {
+    @include container;
+    position: relative;
+    max-width: 860px;
+    text-align: left;
+  }
+
+  &__kicker {
+    display: inline-flex;
+    margin-bottom: 1.1rem;
+    padding: 0.35rem 0.75rem;
+    border: 1px solid rgba(46, 196, 182, 0.4);
+    border-radius: 999px;
+    color: $accent;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-size: 0.72rem;
+    font-weight: 600;
+  }
+
+  h1 {
+    font-size: clamp(2.6rem, 7vw, 5.2rem);
+    max-width: 12ch;
+    margin-bottom: 1.2rem;
+  }
+
+  &__intro {
+    max-width: 56ch;
+    color: rgba(238, 244, 255, 0.78);
+    font-size: 1.08rem;
+    margin-bottom: 1.6rem;
+  }
+
+  &__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem 1.3rem;
+    margin-bottom: 2.1rem;
+    color: rgba(238, 244, 255, 0.72);
+    font-size: 0.92rem;
+
+    li,
+    a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      white-space: nowrap;
+    }
+
+    a:hover {
+      color: $accent;
+    }
+  }
+
+  &__cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+  }
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.2rem;
+  border-radius: 999px;
+  font-weight: 600;
+  transition:
+    transform 0.25s $ease,
+    background 0.25s $ease,
+    border-color 0.25s $ease;
+
+  &--primary {
+    background: $accent;
+    color: $ink;
+
+    &:hover {
+      transform: translateY(-2px);
+      background: #4ad4c6;
+    }
+  }
+
+  &--ghost {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+
+    &:hover {
+      transform: translateY(-2px);
+      border-color: $accent;
+    }
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.12);
+    opacity: 1;
+  }
+}

@@ -1,0 +1,158 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 40;
+  height: $nav-h;
+  color: #e8eef8;
+  background: transparent;
+  transition:
+    background 0.35s $ease,
+    box-shadow 0.35s $ease,
+    color 0.35s $ease;
+
+  &.is-scrolled,
+  &.is-open {
+    background: rgba(7, 17, 31, 0.92);
+    backdrop-filter: blur(16px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.18);
+  }
+
+  &__inner {
+    @include container;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+
+  &__brand {
+    font-family: $font-display;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    font-size: 1.25rem;
+  }
+
+  &__links {
+    display: none;
+    gap: 1.6rem;
+    font-size: 0.92rem;
+
+    a {
+      position: relative;
+      color: rgba(232, 238, 248, 0.78);
+      transition: color 0.2s $ease;
+
+      &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -6px;
+        width: 100%;
+        height: 1px;
+        background: $accent;
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.25s $ease;
+      }
+
+      &:hover {
+        color: #fff;
+
+        &::after {
+          transform: scaleX(1);
+        }
+      }
+    }
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  &__lang {
+    display: flex;
+    padding: 3px;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 999px;
+
+    button {
+      min-width: 38px;
+      height: 28px;
+      border-radius: 999px;
+      color: rgba(232, 238, 248, 0.7);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+
+      &.is-active {
+        background: $accent;
+        color: $ink;
+      }
+    }
+  }
+
+  &__cv {
+    display: none;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.45rem 0.85rem;
+    border-radius: 999px;
+    background: $accent;
+    color: $ink;
+    font-size: 0.82rem;
+    font-weight: 600;
+    transition:
+      transform 0.25s $ease,
+      background 0.25s $ease;
+
+    &:hover {
+      background: #4ad4c6;
+      transform: translateY(-1px);
+    }
+  }
+
+  &__menu {
+    color: inherit;
+    display: grid;
+    place-items: center;
+  }
+
+  &__drawer {
+    display: none;
+    flex-direction: column;
+    gap: 1.1rem;
+    padding: 0.4rem 1.25rem 1.6rem;
+    background: rgba(7, 17, 31, 0.96);
+
+    a {
+      font-family: $font-display;
+      font-size: 1.35rem;
+    }
+
+    &.is-visible {
+      display: flex;
+    }
+  }
+}
+
+@media (min-width: 900px) {
+  .nav {
+    &__links,
+    &__cv {
+      display: flex;
+    }
+
+    &__menu,
+    &__drawer {
+      display: none !important;
+    }
+  }
+}

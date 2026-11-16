@@ -1,0 +1,36 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.about {
+  @include section;
+  background: $paper;
+
+  &__inner {
+    @include container;
+    display: grid;
+    gap: 1.4rem;
+  }
+
+  h2 {
+    font-size: clamp(1.9rem, 4vw, 3rem);
+    max-width: 16ch;
+    margin-top: 0.55rem;
+  }
+
+  &__body {
+    max-width: 68ch;
+    font-size: 1.08rem;
+    color: $text-muted;
+  }
+}
+
+.eyebrow {
+  @include eyebrow;
+
+  &::before {
+    content: '';
+    width: 28px;
+    height: 1px;
+    background: $accent-deep;
+  }
+}
